@@ -1,9 +1,82 @@
 var quizStart = document.querySelector("#btnStart");
 var firstEl = document.querySelector("#wellcome-holder");
 var stateFEL = firstEl.getAttribute("data-state");
+var divEl = document.createElement("div");
+var allLi=document.querySelectorAll('li')
+var lE1 = document.createElement("li");
+var lE2 = document.createElement("li");
+var lE3 = document.createElement("li");
+var lE4 = document.createElement("li");
+var bEl=document.createElement('button')
+var olEl = document.createElement("ol");
+var pEl = document.createElement("p");
+let i = 0;
+
+var javascriptQuiz = [
+  {
+    question: "JavaScript is a ___ -side programming language.",
+    choose: ["client", "server", "both", "node"],
+    answer: "both",
+  },
+  {
+    question:
+      "Which of the following will write the message “Hello DataFlair!” in an alert box?",
+    choose:[
+      "alertBox(“Hello DataFlair!”);",
+      "alert(Hello DataFlair!);",
+      "msgAlert(“Hello DataFlair!”);",
+      "alert(“Hello DataFlair!”);",
+    ],
+    answer: "alert(Hello DataFlair!);",
+  },
+  {
+    question:
+      "Which of the following will write the message “Hello DataFlair!” in an alert box?",
+    choose:[
+      "alertBox(“Hello DataFlair!”);",
+      "alert(Hello DataFlair!);",
+      "msgAlert(“Hello DataFlair!”);",
+      "alert(“Hello DataFlair!”);",
+    ],
+    answer: "alert(Hello DataFlair!);",
+  }
+  
+];
 //on start quiz button the visibility of start page is hidden and the quiz will show up
-quizStart.addEventListener("click", function () {
+quizStart.addEventListener("click", function tes () {
   if (stateFEL === "visibile") {
-    firstEl.style.innerHtml='node'
+    firstEl.style.display = "none";
+    
+    var index=localStorage.setItem('index',1)
+    // var newDiv=document.createElement('div')
+
+    divEl.style.backgroundColor = "red";
+   olEl.setAttribute("style", "background:#333333; padding:20px; color:black");
+   lE1.setAttribute("style", " color:red; background: #666666; padding: 5px; margin-left: 35px;");
+   lE2.setAttribute("style", " color:white; background: #777777; padding: 5px; margin-left: 35px;");
+   lE3.setAttribute("style", " color:white; background: #888888; padding: 5px; margin-left: 35px;");
+   lE4.setAttribute("style", " color:white; background: #999999; padding: 5px; margin-left: 35px;");
+    pEl.textContent = javascriptQuiz[i].question;
+   
+    lE1.textContent = javascriptQuiz[i].choose[i];
+    lE2.textContent = javascriptQuiz[i].choose[i+1];
+    lE3.textContent = javascriptQuiz[i].choose[i+23];
+    lE4.textContent = javascriptQuiz[i].choose[i+3];
+   
+  
+    olEl.appendChild(lE1);
+    olEl.appendChild(lE2);
+    olEl.appendChild(lE3);
+    olEl.appendChild(lE4);
+    document.body.appendChild(divEl);
+    divEl.appendChild(pEl);
+    divEl.appendChild(olEl);
+    bEl.textContent='Check'
+     divEl.appendChild(bEl)
+    bEl.addEventListener('click',function(){
+        i++
+       
+    tes()
+    })
   }
 });
