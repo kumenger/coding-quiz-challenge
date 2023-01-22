@@ -1,0 +1,40 @@
+li {
+   list-style: none;
+   font-size: 25px;
+   color:red;
+}
+
+ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.warn{
+    color: rgb(240, 35, 35);
+}
+.wellcome-holder{
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+}
+.wellcome-holder p{
+    font-size: 25px;
+}
+.welcome{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.describtion{
+    margin-top: 5%;
+    padding: 2%;
+}
+#btnStart{
+    display: flex;
+     font-size: larger;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(8, 8, 57);
+    color: white;
+    padding: 1%;
+}
