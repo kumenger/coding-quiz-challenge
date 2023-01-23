@@ -146,35 +146,47 @@ quizStart.addEventListener("click", function tes() {
 
       function nextQuiz() {
         if (i === javascriptQuiz.length - 1) {
-            setTimeout(() => {
-                divEl.style.display = "none";
-                clearInterval(timeInterVal);
-                timerEl.textContent = "all quzes finished";
-                var newDiv=document.createElement('div')
-                newDiv.setAttribute('style',"width:100%;text-align:center")
-                var newH3=document.createElement('h3')
-                var newH4=document.createElement('h4')
-                var formEl=document.createElement('form')
-                 var lbEL=document.createElement('lable')
-                 lbEL.textContent='Enter initials :'
-                var inputEl=document.createElement('input')
-                var subEl=document.createElement('button')
-                subEl.textContent='Submit'
-                formEl.appendChild(lbEL)
-                formEl.appendChild(inputEl)
-                formEl.appendChild(subEl)
-                
-                newH3.textContent='All Done!'
-                newH4.textContent=`your finial Score is ${localStorage.getItem('wins')}`
+          setTimeout(() => {
+            divEl.style.display = "none";
+            clearInterval(timeInterVal);
+            timerEl.textContent = "all quzes finished";
+            var newDiv = document.createElement("div");
+            newDiv.setAttribute("style", "width:100%;text-align:center");
+            var newH3 = document.createElement("h3");
+            var newH4 = document.createElement("h4");
+            var formEl = document.createElement("form");
+            var lbEL = document.createElement("lable");
+            lbEL.textContent = "Enter initials :";
+            var inputEl = document.createElement("input");
+            var subEl = document.createElement("button");
+            subEl.textContent = "Submit";
+            formEl.appendChild(lbEL);
+            formEl.appendChild(inputEl);
+            formEl.appendChild(subEl);
 
-                document.body.append(newDiv)
-                newDiv.appendChild(newH3)
-                newDiv.appendChild(newH4)
-                newDiv.appendChild(formEl)
-            }, 2000);
-        
-         ;
-   
+            newH3.textContent = "All Done!";
+            newH4.textContent = `your finial Score is ${localStorage.getItem(
+              "wins"
+            )}`;
+
+            document.body.append(newDiv);
+            newDiv.appendChild(newH3);
+            newDiv.appendChild(newH4);
+            newDiv.appendChild(formEl);
+            subEl.addEventListener("click", function () {
+              var highScore = JSON.parse(
+                localStorage.getItem("highScore") || "[]"
+              );
+
+              highScore.push({
+                names: inputEl.value,
+                score: localStorage.getItem("wins"),
+              });
+              localStorage.clear();
+
+              localStorage.setItem("highScore", JSON.stringify(highScore));
+            });
+          }, 1000);
         }
         i++;
         addContents(i);
