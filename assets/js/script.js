@@ -10,6 +10,19 @@ var lE4 = document.createElement("li");
 var bEl = document.createElement("button");
 var olEl = document.createElement("ol");
 var pEl = document.createElement("p");
+var timerEl = document.getElementById("timer");
+var timer = parseInt(timerEl.innerHTML);
+
+function countDown() {
+  var timeInterVal = setInterval(() => {
+    timerEl.innerHTML = timer--;
+    if (timer === 0) {
+      clearInterval(timeInterVal);
+      timerEl.textContent = "time is out";
+    }
+  }, 1000);
+}
+
 let i = 0;
 
 var javascriptQuiz = [
@@ -30,8 +43,7 @@ var javascriptQuiz = [
     answer: "alert(Hello DataFlair!);",
   },
   {
-    question:
-      "choose",
+    question: "choose",
     choose: [
       "alertBox(“Hello DataFlair!”);",
       "alert(Hello DataFlair!);",
@@ -39,52 +51,51 @@ var javascriptQuiz = [
       "alert(“Hello DataFlair!”);",
     ],
     answer: "alert(Hello DataFlair!);",
-  },{
-    question:
-      "How do you find the minimum of x and y using JavaScript??",
-    choose: [
-      " min(x,y);",
-      "Math.min(x,y);",
-      "Math.min(xy);",
-      "min(xy);",
-    ],
+  },
+  {
+    question: "How do you find the minimum of x and y using JavaScript??",
+    choose: [" min(x,y);", "Math.min(x,y);", "Math.min(xy);", "min(xy);"],
     answer: "Math.min(x,y);",
-  }
+  },
 ];
 //on start quiz button the visibility of start page is hidden and the quiz will show up
 quizStart.addEventListener("click", function tes() {
+    
   if (stateFEL === "visibile") {
     firstEl.style.display = "none";
-
-    var index = localStorage.setItem("index", 1);
+    var timeInterVal = setInterval(() => {
+        
+      timerEl.innerHTML = timer--;
+     
+      if (timer === 0) {
+        clearInterval(timeInterVal);
+        timerEl.textContent = "time is out";
+      }
+     
+    }, 1000);
+  
     // var newDiv=document.createElement('div')
 
     divEl.style.backgroundColor = "red";
-    olEl.setAttribute("style", "background:#333333; padding:20px; color:black");
+    olEl.setAttribute("style", "background:#333333; padding:5px; color:black;margin:5px");
     lE1.setAttribute(
       "style",
-      " color:red; background: #666666; padding: 5px; margin-left: 35px;"
+      " color:red; background: #666666; padding: 5px; margin: 35px;"
     );
     lE2.setAttribute(
       "style",
-      " color:white; background: #777777; padding: 5px; margin-left: 35px;"
+      " color:white; background: #777777; padding: 5px; margin: 35px;"
     );
     lE3.setAttribute(
       "style",
-      " color:white; background: #888888; padding: 5px; margin-left: 35px;"
+      " color:white; background: #888888; padding: 5px; margin: 35px;"
     );
     lE4.setAttribute(
       "style",
-      " color:white; background: #999999; padding: 5px; margin-left: 35px;"
+      " color:white; background: #999999; padding: 5px; margin: 35px;"
     );
     if (i < javascriptQuiz.length) {
-        console.log(i)
-      pEl.textContent = javascriptQuiz[i].question;
-
-      lE1.textContent = javascriptQuiz[i].choose[0];
-      lE2.textContent = javascriptQuiz[i].choose[1];
-      lE3.textContent = javascriptQuiz[i].choose[2];
-      lE4.textContent = javascriptQuiz[i].choose[3];
+      addContents(i)
 
       olEl.appendChild(lE1);
       olEl.appendChild(lE2);
@@ -96,14 +107,28 @@ quizStart.addEventListener("click", function tes() {
       bEl.textContent = "Check";
       divEl.appendChild(bEl);
       bEl.addEventListener("click", function () {
-        if(i===javascriptQuiz.length){
-            divEl.style.display='none'
-            document.body.append("end quiz");
+        if (i === javascriptQuiz.length) {
+          divEl.style.display = "none";
+          clearInterval(timeInterVal)
+          timerEl.textContent='all quzes finished'
+          document.body.append("end quiz");
         }
         i++;
-
-        tes();
+        addContents(i)
+      
+     
+         
+   
       });
-    } 
+    }
+   
   }
 });
+function addContents(j){
+    pEl.textContent = javascriptQuiz[j].question;
+
+      lE1.textContent = javascriptQuiz[j].choose[0];
+      lE2.textContent = javascriptQuiz[j].choose[1];
+      lE3.textContent = javascriptQuiz[j].choose[2];
+      lE4.textContent = javascriptQuiz[j].choose[3];
+}
