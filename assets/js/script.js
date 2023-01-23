@@ -11,8 +11,9 @@ var bEl = document.createElement("button");
 var olEl = document.createElement("ol");
 var pEl = document.createElement("h2");
 var timerEl = document.getElementById("timer");
+var resultDisplay = document.createElement("h4");
 var timer = parseInt(timerEl.innerHTML);
-
+var wins = localStorage.getItem("wins");
 
 let i = 0;
 
@@ -63,9 +64,12 @@ quizStart.addEventListener("click", function tes() {
     }, 1000);
 
     // var newDiv=document.createElement('div')
-    
+
     divEl.style.backgroundColor = "red";
-    divEl.setAttribute('style',"background-color:red;padding:10px;text-align:center")
+    divEl.setAttribute(
+      "style",
+      "background-color:red;padding:10px;text-align:center"
+    );
     olEl.setAttribute(
       "style",
       "background:#333333; padding:5px; color:black;margin:5px"
@@ -87,19 +91,46 @@ quizStart.addEventListener("click", function tes() {
       " color:white; background: #999999; padding: 5px; margin: 35px;"
     );
     lE1.addEventListener("click", function () {
-      console.log(lE1.innerHTML);
+      console.log(javascriptQuiz[i].answer, lE1.innerHTML);
+      if (javascriptQuiz[i].answer === lE1.innerHTML) {
+        wins++;
+        localStorage.setItem("wins", wins);
+        resultDisplay.textContent = "Correct";
+        divEl.appendChild(resultDisplay);
+      }
       nextQuiz();
     });
     lE2.addEventListener("click", function () {
-      console.log(lE2.innerHTML);
+      if (javascriptQuiz[i].answer === lE2.innerHTML) {
+        wins++;
+        localStorage.setItem("wins", wins);
+        resultDisplay.textContent = "Correct";
+      } else {
+        resultDisplay.textContent = "Wrong";
+      }
+      divEl.appendChild(resultDisplay);
       nextQuiz();
     });
     lE3.addEventListener("click", function () {
-      console.log(lE3.innerHTML);
+      if (javascriptQuiz[i].answer === lE3.innerHTML) {
+        wins++;
+        localStorage.setItem("wins", wins);
+        resultDisplay.textContent = "Correct";
+      } else {
+        resultDisplay.textContent = "Wrong";
+      }
+      divEl.appendChild(resultDisplay);
       nextQuiz();
     });
     lE4.addEventListener("click", function () {
-      console.log(lE4.innerHTML);
+      if (javascriptQuiz[i].answer === lE4.innerHTML) {
+        wins++;
+        localStorage.setItem("wins", wins);
+        resultDisplay.textContent = "Correct";
+      } else {
+        resultDisplay.textContent = "Wrong";
+      }
+      divEl.appendChild(resultDisplay);
       nextQuiz();
     });
     if (i < javascriptQuiz.length) {
@@ -115,10 +146,35 @@ quizStart.addEventListener("click", function tes() {
 
       function nextQuiz() {
         if (i === javascriptQuiz.length - 1) {
-          divEl.style.display = "none";
-          clearInterval(timeInterVal);
-          timerEl.textContent = "all quzes finished";
-          document.body.append("end quiz");
+            setTimeout(() => {
+                divEl.style.display = "none";
+                clearInterval(timeInterVal);
+                timerEl.textContent = "all quzes finished";
+                var newDiv=document.createElement('div')
+                newDiv.setAttribute('style',"width:100%;text-align:center")
+                var newH3=document.createElement('h3')
+                var newH4=document.createElement('h4')
+                var formEl=document.createElement('form')
+                 var lbEL=document.createElement('lable')
+                 lbEL.textContent='Enter initials :'
+                var inputEl=document.createElement('input')
+                var subEl=document.createElement('button')
+                subEl.textContent='Submit'
+                formEl.appendChild(lbEL)
+                formEl.appendChild(inputEl)
+                formEl.appendChild(subEl)
+                
+                newH3.textContent='All Done!'
+                newH4.textContent=`your finial Score is ${localStorage.getItem('wins')}`
+
+                document.body.append(newDiv)
+                newDiv.appendChild(newH3)
+                newDiv.appendChild(newH4)
+                newDiv.appendChild(formEl)
+            }, 2000);
+        
+         ;
+   
         }
         i++;
         addContents(i);
