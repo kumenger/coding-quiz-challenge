@@ -70,12 +70,10 @@ function timeOutQuizFinished() {
   newDiv.appendChild(newH4);
   newDiv.appendChild(formEl);
   subEl.addEventListener("click", function (event) {
-    event.preventDefault()
-    if(!inputEl.value){
-        alert("please enter intial name")
-    }
-    else
-    var highScore = JSON.parse(localStorage.getItem("highScore") || "[]");
+    event.preventDefault();
+    if (!inputEl.value) {
+      alert("please enter intial name");
+    } else var highScore = JSON.parse(localStorage.getItem("highScore") || "[]");
 
     highScore.push({
       names: inputEl.value,
@@ -84,52 +82,62 @@ function timeOutQuizFinished() {
     localStorage.clear();
 
     localStorage.setItem("highScore", JSON.stringify(highScore));
-    document.getElementsByName(inputEl).value=''
-    newDiv.style.display='none'
-    var new2Div=document.createElement('div')
-    var highScore=document.createElement('h1')
-    highScore.textContent="High Scores"
-    document.body.appendChild(new2Div)
-    new2Div.appendChild(highScore)
-    newOlEL=document.createElement('ol')
-    new2Div.appendChild(newOlEL)
-    new2Div.style.textAlign='center'
-    let scoresArry=JSON.parse(localStorage.getItem('highScore'));
-    for(let i=0;i<scoresArry.length;i++){
-        var newLiEl=document.createElement('li')
+    document.getElementsByName(inputEl).value = "";
+    newDiv.style.display = "none";
+    var new2Div = document.createElement("div");
+    var highScore = document.createElement("h1");
 
-          newLiEl.innerHTML=`${scoresArry[i].names }-${scoresArry[i].score}`
-          newOlEL.appendChild(newLiEl)
-          new2Div.appendChild(newOlEL)
+    document.body.appendChild(new2Div);
+    new2Div.appendChild(highScore);
+    newOlEL = document.createElement("ol");
+    new2Div.appendChild(newOlEL);
+    new2Div.style.textAlign = "center";
+    let scoresArry = JSON.parse(localStorage.getItem("highScore")).sort(
+        (x, y) => y.score - x.score
+      );;
+
+    if (!scoresArry) {
+      highScore.textContent = "No Scores Available";
+    } else
+      for (let i = 0; i < scoresArry.length; i++) {
+        highScore.textContent = "High Scores";
+        var newLiEl = document.createElement("li");
+
+        newLiEl.innerHTML = `${scoresArry[i].names}-${scoresArry[i].score}`;
        
-        
-    }
-    var gobackbtn=document.createElement('button')
-    var clearScoe=document.createElement('button')
-    gobackbtn.innerHTML="Go Back"
-    clearScoe.innerHTML="Clear High Scores"
-    new2Div.appendChild(gobackbtn)
-    new2Div.appendChild(clearScoe)
-    gobackbtn.addEventListener('click',function(){
-        window.location.reload()
-    })
-    
-   
-    
+        newOlEL.appendChild(newLiEl);
+        new2Div.appendChild(newOlEL);
+      }
+
+    var gobackbtn = document.createElement("button");
+    var clearScoe = document.createElement("button");
+    gobackbtn.innerHTML = "Go Back";
+    clearScoe.innerHTML = "Clear High Scores";
+    new2Div.appendChild(gobackbtn);
+    new2Div.appendChild(clearScoe);
+    gobackbtn.addEventListener("click", function () {
+      window.location.reload();
+    });
+    clearScoe.addEventListener("click", function () {
+      highScore.textContent = "No Scores Available";
+      new2Div.removeChild(newOlEL);
+      localStorage.clear();
+
+      clearScoe.style.display = "none";
+    });
   });
-  if(localStorage.getItem('wins')){
+  if (localStorage.getItem("wins")) {
     newH4.textContent = `your finial Score is ${localStorage.getItem("wins")}`;
-  }
-  else{
+  } else {
     newH4.textContent = `your finial Score is ${0}`;
   }
-
-  
 }
 
 quizStart.addEventListener("click", function tes() {
-    let scoresArry=JSON.parse(localStorage.getItem('highScore'));
-    console.log(scoresArry)
+  let scoresArry = JSON.parse(localStorage.getItem("highScore")).sort(
+    (x, y) => y.score - x.score
+  );
+  console.log(scoresArry);
   if (stateFEL === "visibile") {
     firstEl.style.display = "none";
     var timeInterVal = setInterval(() => {
@@ -175,12 +183,11 @@ quizStart.addEventListener("click", function tes() {
         wins++;
         localStorage.setItem("wins", wins);
         resultDisplay.textContent = "Correct";
-    
-      }    else {
+      } else {
         resultDisplay.textContent = "Wrong";
-        timer=timer-10
+        timer = timer - 10;
       }
-       divEl.appendChild(resultDisplay);
+      divEl.appendChild(resultDisplay);
       nextQuiz();
     });
     lE2.addEventListener("click", function () {
@@ -190,7 +197,7 @@ quizStart.addEventListener("click", function tes() {
         resultDisplay.textContent = "Correct";
       } else {
         resultDisplay.textContent = "Wrong";
-        timer=timer-10
+        timer = timer - 10;
       }
       divEl.appendChild(resultDisplay);
       nextQuiz();
@@ -202,7 +209,7 @@ quizStart.addEventListener("click", function tes() {
         resultDisplay.textContent = "Correct";
       } else {
         resultDisplay.textContent = "Wrong";
-        timer=timer-10
+        timer = timer - 10;
       }
       divEl.appendChild(resultDisplay);
       nextQuiz();
@@ -214,7 +221,7 @@ quizStart.addEventListener("click", function tes() {
         resultDisplay.textContent = "Correct";
       } else {
         resultDisplay.textContent = "Wrong";
-        timer=timer-10
+        timer = timer - 10;
       }
       divEl.appendChild(resultDisplay);
       nextQuiz();
