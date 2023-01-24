@@ -3,6 +3,9 @@ li {
    font-size: 20px;
    color:red;
 }
+.z:hover{
+    background-color: aqua;
+}
 
 
 ul {
