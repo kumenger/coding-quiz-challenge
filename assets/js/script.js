@@ -110,6 +110,9 @@ function timeOutQuizFinished() {
     clearScoe.innerHTML="Clear High Scores"
     new2Div.appendChild(gobackbtn)
     new2Div.appendChild(clearScoe)
+    gobackbtn.addEventListener('click',function(){
+        window.location.reload()
+    })
     
    
     
