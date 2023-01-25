@@ -1,10 +1,66 @@
 li {
    list-style: none;
    font-size: 20px;
-   color:red;
+   color:rgb(170, 173, 223);
 }
-.z:hover{
-    background-color: aqua;
+#timer{
+    color: rgb(220, 128, 128);
+  
+}
+.quizList{
+
+padding: 15px;
+
+
+  width: 50%;
+  margin: auto;
+
+
+    
+}
+.viewControl{
+    display: flexbox;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.hightScoreList{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+
+}
+.listItems{
+    background:#3f4856; padding:5px;margin:5px;color: snow;font-size:20px;letter-spacing: 3px;font-family: 'Times New Roman', Times, serif;
+}
+.listItems:hover{
+    background-color: rgb(40, 35, 28);
+    cursor:grab;
+}
+body{
+    background-color: rgb(86, 84, 81);
+    padding: 2%;
+    font-family: 'Times New Roman', Times, serif;
+    letter-spacing: 3px;
+ 
+
+ 
+}
+#view-score{
+    letter-spacing: 1px;
+   
+    padding: 5px;
+}
+
+
+#view-score:hover{
+   cursor: grab;
+
+ 
+}
+#view-score::after{
+    content: '📃';
+    display: inline-block;
 }
 
 
@@ -14,7 +70,7 @@ ul {
     justify-content: space-between;
 }
 .warn{
-    color: rgb(240, 35, 35);
+    color: rgb(235, 185, 185);
 }
 .wellcome-holder{
  display: flex;
@@ -24,21 +80,37 @@ ul {
 .wellcome-holder p{
     font-size: 25px;
 }
+#view-score{
+    text-decoration: underline;
+    
+}
+
+#time-holder{
+    display: flex;
+    flex-direction: row;
+}
+
 .welcome{
     width: 100%;
     display: flex;
     justify-content: center;
 }
 .describtion{
-    margin-top: 5%;
-    padding: 2%;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+.describtion p{
+    font-size: larger;
+    
 }
 #btnStart{
     display: flex;
-     font-size: larger;
+     font-size: medium;
     justify-content: center;
     align-items: center;
     background-color: rgb(8, 8, 57);
     color: white;
-    padding: 1%;
+    padding: 2%;
+    border-radius: 15px;
 }
