@@ -51,6 +51,37 @@ window.addEventListener("load", () => {
   localStorage.removeItem("wins");
 });
 var javascriptQuiz = [
+    //What is the correct syntax to use an external script called “new.js”?
+    {
+        question: "To add Element at start of Array we use?",
+        choose: ["push()", "shift()", "unshift()", "pop()"],
+        answer: "unshift()",
+      },
+    {
+        question: "var num = [1, 2, 3]; \n var lastNum = num[num.length];\n What will be the variable lastNum?",
+        choose: ["null", "Nan", "false", "undefined"],
+        answer: "undefined",
+      },
+    {
+        question: "When we don’t assign a value to a variable it will be?",
+        choose: ["\"\" ", "undefined", "NaN", "null"],
+        answer: "undefined",
+      },
+      {
+        question: "var myArry= [];\nconsole.log(typeof myArry) print?",
+        choose: ["Array", "undefind", "null", "object"],
+        answer: "object",
+      },
+    {
+        question: "To get the data type of some variable you will use",
+        choose: ["dataType", "typeof", "typeOf", "All"],
+        answer: "typeof",
+      },
+    {
+        question: "How do you declare a JavaScript variable x.",
+        choose: ["let myElem", "var myElem", "const myElem", "All"],
+        answer: "All",
+      },
   {
     question: "Inside what HTML tag you would put JavaScript code?.",
     choose: ["js", "scripting", "script", "javascript"],
@@ -87,6 +118,12 @@ var javascriptQuiz = [
     choose: ["min(x,y);", "Math.min(x,y);", "Math.min(xy);", "min(xy);"],
     answer: "Math.min(x,y);",
   },
+  {
+    question: `Can you guess the return of the following code 10<9`,
+    choose: ["true", "Nan", "false", "undefined"],
+    answer: "true",
+  },
+  
 ];
 //on start quiz button the visibility of start page is hidden and the quiz will show up
 
