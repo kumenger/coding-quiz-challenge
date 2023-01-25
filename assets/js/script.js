@@ -206,7 +206,7 @@ quizStart.addEventListener("click", function tes() {
   exit.addEventListener("click", () => {
     window.location.reload();
   });
-  if (stateFEL === "visibile") {
+  if (stateFEL === "visibile"&&timer>0) {
     firstEl.style.display = "none";
 
     var timeInterVal = setInterval(() => {
@@ -220,7 +220,19 @@ quizStart.addEventListener("click", function tes() {
         timeOutQuizFinished();
       }
     }, 1000);
-
+    function managetime(){
+        if(timer>=10){
+            timer=timer-10
+        }
+        else{
+            timer=0
+            clearInterval(timeInterVal);
+        timerEl.textContent = "Out!";
+        divEl.style.display = "none";
+        newH3.textContent = "Time is out!";
+        timeOutQuizFinished();
+      }
+        }
     lE1.addEventListener("click", function () {
       if (javascriptQuiz[i].answer === lE1.innerHTML) {
         wins++;
@@ -228,11 +240,13 @@ quizStart.addEventListener("click", function tes() {
         resultDisplay.textContent = "Correct";
       } else {
         resultDisplay.textContent = "Wrong";
-        timer = timer > 10 ? (timer = timer - 10) : (timer = 0);
+        managetime()
       }
       divEl.appendChild(resultDisplay);
       nextQuiz();
     });
+    
+
     lE2.addEventListener("click", function () {
       if (javascriptQuiz[i].answer === lE2.innerHTML) {
         wins++;
@@ -240,7 +254,7 @@ quizStart.addEventListener("click", function tes() {
         resultDisplay.textContent = "Correct";
       } else {
         resultDisplay.textContent = "Wrong";
-        timer = timer > 10 ? (timer = timer - 10) : (timer = 0);
+        managetime()
       }
       divEl.appendChild(resultDisplay);
       nextQuiz();
@@ -252,7 +266,7 @@ quizStart.addEventListener("click", function tes() {
         resultDisplay.textContent = "Correct";
       } else {
         resultDisplay.textContent = "Wrong";
-        timer = timer > 10 ? (timer = timer - 10) : (timer = 0);
+        managetime()
       }
       divEl.appendChild(resultDisplay);
       nextQuiz();
@@ -264,7 +278,8 @@ quizStart.addEventListener("click", function tes() {
         resultDisplay.textContent = "Correct";
       } else {
         resultDisplay.textContent = "Wrong";
-        timer = timer > 10 ? (timer = timer - 10) : (timer = 0);
+        managetime()
+        
       }
       divEl.appendChild(resultDisplay);
       nextQuiz();
